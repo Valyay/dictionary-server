@@ -6,7 +6,10 @@ var url = require("url");
 var dictionary = null;
 
 var dictionaryHandler = (request, response) => {
-	var u = url.parse(request.url);
+	let decodedUrl = decodeURI(request.url);
+	let u = url.parse(decodedUrl);
+
+	response.setHeader("Access-Control-Allow-Origin", "*");
 
 	if (u.pathname == "/readyz") {
 		if (dictionary) {
@@ -16,6 +19,19 @@ var dictionaryHandler = (request, response) => {
 			response.writeHead(404);
 			response.end("Not Loaded");
 		}
+		return;
+	}
+
+	if (u.pathname == "/mindmap") {
+		fs.readFile("./mindmap.png", function(err, data) {
+			if (err) {
+				response.writeHead(404);
+				response.end(JSON.stringify(err));
+				return;
+			}
+			response.writeHead(200, { "Content-Type": "image/png" });
+			response.end(data);
+		});
 		return;
 	}
 
@@ -29,7 +45,7 @@ var dictionaryHandler = (request, response) => {
 		response.end(key + " was not found");
 		return;
 	}
-	response.writeHead(200);
+	response.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
 	response.end(def);
 };
 
