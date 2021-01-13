@@ -1,5 +1,11 @@
-FROM node:7.5-slim
+FROM node:12
 
-COPY server.js /server.js
+COPY ["./*", "/app"]
 
-CMD node /server.js
+WORKDIR /app
+
+CMD ["npm", "start"]
+
+EXPOSE 3000
+
+
