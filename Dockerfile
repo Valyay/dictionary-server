@@ -1,10 +1,11 @@
+
 FROM node:12.4-alpine
+
+COPY ["./*", "/app/"]
 
 WORKDIR /app
 
-COPY . .
-
-EXPOSE 3000
 CMD [ "npm", "start" ]
 
+EXPOSE 3000
 
