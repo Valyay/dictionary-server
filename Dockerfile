@@ -1,8 +1,8 @@
 FROM node:12
 
-COPY ["./*/", "/app"]
-
 WORKDIR /app
+
+COPY ["./*", "/app"]
 
 CMD ["npm", "start"]
 
