@@ -10,6 +10,7 @@ var dictionaryHandler = (request, response) => {
 	let u = url.parse(decodedUrl);
 
 	response.setHeader("Access-Control-Allow-Origin", "*");
+	response.setHeader("Content-Type", "text/plain; charset=utf-8");
 
 	if (u.pathname == "/readyz") {
 		if (dictionary) {
@@ -37,11 +38,15 @@ var dictionaryHandler = (request, response) => {
 
 	var key = "";
 	if (u.pathname.length > 0) {
-		key = u.pathname.substr(1).toUpperCase();
+		key = u.pathname
+			.substr(1)
+			.toLowerCase()
+			.replace("%20", " ");
 	}
 	var def = dictionary[key];
+
 	if (!def) {
-		response.writeHead(404);
+		response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
 		response.end(key + " was not found");
 		return;
 	}
