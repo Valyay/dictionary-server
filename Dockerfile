@@ -1,5 +1,5 @@
 
-FROM node:12.4-alpine
+FROM node:12
 
 COPY ["./*", "/app/"]
 
