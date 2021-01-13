@@ -1,0 +1,11 @@
+{
+	"name": "dictionary-server",
+	"version": "1.0.0",
+	"description": "A simple containerized node.js server that implements a dictionary API server.",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"author": "Valyay",
+	"license": "MIT"
+}
