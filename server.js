@@ -103,10 +103,10 @@ downloadDictionary(
 
 const server = http.createServer(dictionaryHandler);
 
-server.listen(8080, err => {
+server.listen(3000, err => {
 	if (err) {
 		return console.log("error starting server: " + err);
 	}
 
-	console.log("server is listening on 8080");
+	console.log("server is listening on 3000");
 });
