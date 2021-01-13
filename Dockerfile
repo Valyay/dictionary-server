@@ -1,11 +1,10 @@
 FROM node:12
 
-COPY ["./*", "/app/"]
-
 WORKDIR /app
 
-CMD ["npm", "start"]
+COPY . .
 
 EXPOSE 3000
+CMD [ "npm", "start" ]
 
 
